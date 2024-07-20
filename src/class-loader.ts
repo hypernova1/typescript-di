@@ -1,5 +1,7 @@
-import path from 'path';
+import * as fs from 'fs';
 
-const directoryPath = path.join(__dirname, 'src');
-
-console.log(directoryPath);
+export function loadClass(directory: string) {
+    console.log(directory);
+    let strings = fs.readdirSync(directory);
+    console.log(strings);
+}
