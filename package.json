@@ -7,7 +7,8 @@
         "start": "node dist/src/index.js"
     },
     "dependencies": {
-        "path": "^0.12.7"
+        "path": "^0.12.7",
+        "reflect-metadata": "^0.2.2"
     },
     "devDependencies": {
         "@babel/preset-env": "^7.24.8",
