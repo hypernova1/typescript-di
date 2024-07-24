@@ -1,5 +1,8 @@
 import 'reflect-metadata';
 
-export default function Injectable(target: Function) {
-    Reflect.defineMetadata('injectable', true, target);
+export default function Injectable(token?: string) {
+
+    return function(target: Function) {
+        Reflect.defineMetadata('injectable', true, target);
+    };
 }

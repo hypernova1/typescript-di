@@ -1,9 +1,9 @@
 import ClassScanner from '../src/class-scanner';
 import path from 'path';
 import isParentClass from '../src/util/is-parent-class';
-import SuperClass from './domain/super-class';
-import SubClass from './domain/sub-class';
-import InjectableClass from './domain/injectable-class';
+import SuperClass from './domain/inheritance/super-class';
+import SubClass from './domain/inheritance/sub-class';
+import InjectableClass from './domain/general/injectable-class';
 
 describe('ClassScanner Test', () => {
     const classScanner = new ClassScanner();

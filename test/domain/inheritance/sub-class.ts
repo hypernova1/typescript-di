@@ -1,7 +1,7 @@
 import SuperClass from './super-class';
-import Injectable from '../../src/decorator/injectable';
+import Injectable from '../../../src/decorator/injectable';
 
-@Injectable
+@Injectable()
 export default class SubClass extends SuperClass {
 
 }

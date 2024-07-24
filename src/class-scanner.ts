@@ -33,7 +33,7 @@ export default class ClassScanner {
                 fs.readdirSync(innerDirectory);
                 const innerFileNames = fs.readdirSync(innerDirectory);
                 this.scanInjectableClasses(innerFileNames, innerDirectory);
-                return;
+                continue;
             }
             const module = require(filePath);
             for (const key in module) {

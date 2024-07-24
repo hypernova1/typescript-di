@@ -1,24 +1,35 @@
 import 'reflect-metadata';
-import ClassScanner from "./class-scanner";
+import ClassScanner from './class-scanner';
 
 export default class ClassLoader {
+
+    private instanceMap: Map<Function | string, any> = new Map();
 
     constructor(private readonly classScanner: ClassScanner) {
     }
 
     load(directory: string) {
-        const injectableClasses = this.classScanner.scan(directory)
-
+        const injectableClasses = this.classScanner.scan(directory);
         for (const injectableClass of injectableClasses) {
             console.log('class name:', injectableClass.prototype.constructor.name);
-            const constructorParams = Reflect.getMetadata('design:paramtypes', injectableClass);
+            const constructorParams: Function[] | undefined = Reflect.getMetadata('design:paramtypes', injectableClass);
             if (typeof constructorParams === 'undefined') {
                 continue;
             }
-            for (const constructorParam of constructorParams) {
-                const instance = this.createInstance(constructorParam);
-                console.log(Object.getOwnPropertyNames(instance));
+
+            this.getParameters(injectableClass, constructorParams);
+        }
+    }
+
+    private getParameters(injectableClass: Function, constructorParams: Function[]) {
+        const qualifyMetadata = Reflect.getOwnMetadata('qualify-inject', injectableClass) || [];
+        for (const [index, constructorParam] of constructorParams.entries()) {
+            console.log('param class name: ', constructorParam.name);
+            const metadata = qualifyMetadata[index];
+            if (metadata) {
+                console.log('qualifyInject:', metadata);
             }
+            // const instance = this.createInstance(constructorParam);
         }
     }
 
